@@ -63,7 +63,7 @@ export const AboutStory = () => {
   const extraTwoY = useTransform(scrollYProgress, [0, 1], [60, -100]);
   const extraTwoRot = useTransform(scrollYProgress, [0, 1], [-8, -25]);
 
-  const detailsOpacity = useTransform(scrollYProgress, [0.2, 0.8], [0, 1]);
+
 
   return (
     <section ref={containerRef} className="h-[300vh] relative bg-light z-20" style={{ overflow: 'clip' }}>

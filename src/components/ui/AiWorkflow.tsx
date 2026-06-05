@@ -24,7 +24,6 @@ export const AiWorkflow = () => {
   const descY = useTransform(scrollYProgress, [0.1, 0.25], [30, 0]);
 
   // Line drawing
-  const lineLength = useTransform(scrollYProgress, [0.3, 0.8], [0, 1]);
 
   return (
     <section ref={containerRef} className="h-[250vh] relative bg-light z-20">

@@ -28,7 +28,7 @@ export const Header = () => {
           ) : (
             <a href="/#work" className="hover:text-black text-gray-500 transition-colors">Work</a>
           )}
-          <Link to="/about" className="hover:text-black text-gray-500 transition-colors">About</Link>
+          {/* <Link to="/about" className="hover:text-black text-gray-500 transition-colors">About</Link> */}
           <a href="#footer" className="relative overflow-hidden bg-[#3F2B73]/80 backdrop-blur-lg border border-white/20 text-white px-6 py-2.5 rounded-full hover:bg-[#3F2B73]/90 transition-all shadow-lg font-semibold group flex items-center justify-center text-sm">
             {/* Continuous Glass shine animation using Framer Motion */}
             <motion.span 

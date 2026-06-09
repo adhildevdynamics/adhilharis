@@ -33,7 +33,7 @@ export const MagneticButton = ({ children, className = '', onClick }: MagneticBu
       transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
       onClick={onClick}
     >
-      <span className="relative z-10 text-sm font-medium tracking-wide">
+      <span className="relative z-10 font-medium tracking-wide">
         {children}
       </span>
     </motion.button>

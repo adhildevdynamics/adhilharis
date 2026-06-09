@@ -29,7 +29,7 @@ export const CodeToProduct = () => {
       <div className="w-full flex flex-col md:flex-row max-w-[1600px] mx-auto px-6 lg:px-24 relative">
         
         {/* Left Side: Sticky Transforming Visuals */}
-        <div className="w-full md:w-1/2 h-[50vh] md:h-screen sticky top-0 flex items-center justify-center overflow-hidden">
+        <div className="w-full md:w-1/2 h-[45vh] md:h-screen sticky top-[72px] md:top-0 bg-light z-10 md:z-auto border-b border-black/5 md:border-b-0 flex items-center justify-center overflow-hidden">
           
           {/* State 1: Code */}
           <motion.div style={{ opacity: state1Opacity, scale: state1Scale, zIndex: state1Opacity }} className="absolute w-full max-w-[400px] flex items-center justify-center">
@@ -76,7 +76,7 @@ export const CodeToProduct = () => {
           </motion.div>
 
           {/* State 3: UI Wireframe */}
-          <motion.div style={{ opacity: state3Opacity, scale: state3Scale, zIndex: state3Opacity }} className="absolute w-full max-w-[320px] flex items-center justify-center">
+          <motion.div style={{ opacity: state3Opacity, scale: state3Scale, zIndex: state3Opacity }} className="absolute w-full max-w-[150px] md:max-w-[320px] flex items-center justify-center">
             <div className="w-full aspect-[1/2] border-[6px] border-gray-200 rounded-[3rem] p-5 bg-white flex flex-col gap-5 shadow-2xl relative overflow-hidden">
               <div className="w-24 h-6 bg-gray-200 rounded-full mx-auto mb-2"></div>
               
@@ -98,13 +98,13 @@ export const CodeToProduct = () => {
               <img 
                 src="/react_native_login.png" 
                 alt="Finished Mobile App" 
-                className="w-[45%] md:w-[40%] h-auto rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-4 border-white absolute -left-4 md:-left-12 -rotate-6 translate-y-8 z-10" 
+                className="w-[35%] md:w-[40%] h-auto rounded-[1rem] md:rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-2 md:border-4 border-white absolute -left-2 md:-left-12 -rotate-6 translate-y-4 md:translate-y-8 z-10" 
               />
               {/* Dashboard */}
               <img 
                 src="/react_ticketing_dashboard.png" 
                 alt="Live Dashboard" 
-                className="w-[75%] md:w-[80%] h-auto rounded-2xl shadow-2xl border border-gray-100 rotate-2 -translate-y-4 z-0 translate-x-8 md:translate-x-12" 
+                className="w-[65%] md:w-[80%] h-auto rounded-xl md:rounded-2xl shadow-2xl border border-gray-100 rotate-2 -translate-y-2 md:-translate-y-4 z-0 translate-x-4 md:translate-x-12" 
               />
             </div>
           </motion.div>
@@ -112,7 +112,7 @@ export const CodeToProduct = () => {
         </div>
 
         {/* Right Side: Scrolling Text Blocks */}
-        <div className="w-full md:w-1/2 flex flex-col justify-start relative px-4 md:px-12 z-20 py-[20vh]">
+        <div className="w-full md:w-1/2 flex flex-col justify-start relative px-4 md:px-12 z-0 md:z-20 pt-0 pb-[10vh] md:py-[20vh]">
           
           <div className="h-[60vh] flex flex-col justify-center gap-6">
             <span className="text-gray-400 font-mono text-sm tracking-widest uppercase">01 / Developer</span>

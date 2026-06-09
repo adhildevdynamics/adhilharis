@@ -3,21 +3,24 @@ import { motion } from 'framer-motion';
 const features = [
   {
     title: "Web Applications",
-    desc: "Building responsive and scalable React.js applications with modern frontend architecture."
+    desc: "Building responsive and scalable React.js applications with modern frontend architecture.",
+    image: "/react_ticketing_dashboard.png"
   },
   {
     title: "Mobile Applications",
-    desc: "Developing React Native applications focused on performance, usability, and maintainability."
+    desc: "Developing React Native applications focused on performance, usability, and maintainability.",
+    image: "/ticket_dashboard_mobile.png"
   },
   {
     title: "UI Systems",
-    desc: "Creating reusable interfaces and design-consistent component systems for long-term product growth."
+    desc: "Creating reusable interfaces and design-consistent component systems for long-term product growth.",
+    image: "/sales_analytics_mobile.png"
   }
 ];
 
 export const Section03WhatIDo = () => {
   return (
-    <section className="w-full max-w-[1200px] mx-auto px-6 md:px-12 py-24 border-t border-gray-100">
+    <section className="w-full max-w-[1200px] mx-auto px-6 md:px-12 py-12 md:py-20 border-t border-gray-100">
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -48,7 +51,12 @@ export const Section03WhatIDo = () => {
             
             {/* Minimal visual placeholder for alternating layout balance */}
             <div className="flex-1 min-h-[160px] md:min-h-[240px] rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center relative overflow-hidden">
-               <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `radial-gradient(circle at center, black 1px, transparent 1px)`, backgroundSize: '16px 16px' }} />
+               <img 
+                 src={feature.image} 
+                 alt={feature.title} 
+                 className="w-full h-full object-cover object-top" 
+               />
+               <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `radial-gradient(circle at center, black 1px, transparent 1px)`, backgroundSize: '16px 16px' }} />
             </div>
           </motion.div>
         ))}

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export const Section04Experience = () => {
   return (
-    <section className="w-full max-w-[1200px] mx-auto px-6 md:px-12 py-24 border-t border-gray-100">
+    <section className="w-full max-w-[1200px] mx-auto px-6 md:px-12 py-12 md:py-20 border-t border-gray-100">
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

@@ -17,7 +17,7 @@ const cards = [
 
 export const Section02Snapshot = () => {
   return (
-    <section className="w-full max-w-[1200px] mx-auto px-6 md:px-12 py-16">
+    <section className="w-full max-w-[1200px] mx-auto px-6 md:px-12 py-8 md:py-16">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {cards.map((card, i) => (
           <motion.div 

@@ -1,7 +1,8 @@
 import { Section01Intro } from '../components/about/Section01Intro';
 import { Section02Snapshot } from '../components/about/Section02Snapshot';
 import { Section03WhatIDo } from '../components/about/Section03WhatIDo';
-import { Section04Experience } from '../components/about/Section04Experience';
+import { AboutProjects } from '../components/about/AboutProjects';
+import { AboutExperience } from '../components/about/AboutExperience';
 import { Section05Approach } from '../components/about/Section05Approach';
 import { Section06TechStack } from '../components/about/Section06TechStack';
 import { Section07Focus } from '../components/about/Section07Focus';
@@ -14,7 +15,8 @@ export const About = () => {
       <Section01Intro />
       <Section02Snapshot />
       <Section03WhatIDo />
-      <Section04Experience />
+      <AboutProjects />
+      <AboutExperience />
       <Section05Approach />
       <Section06TechStack />
       <Section07Focus />

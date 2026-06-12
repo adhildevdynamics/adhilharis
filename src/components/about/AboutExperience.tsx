@@ -69,16 +69,13 @@ const experiences = [
 
 export const AboutExperience = () => {
   return (
-    <section className="w-full max-w-[1200px] mx-auto px-6 md:px-12 py-12 md:py-20 border-t border-gray-100">
+    <section className="w-full max-w-[1200px] mx-auto px-6 md:px-12 py-8 md:py-12 border-t border-gray-100">
       <div className="mb-16">
         <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-400 block mb-3">Roadmap</span>
         <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">Career History</h2>
       </div>
 
       <div className="flex flex-col gap-16 md:gap-24 relative">
-        {/* Continuous Timeline Vertical Line for Desktop */}
-        <div className="absolute left-[33%] top-4 bottom-4 w-[1px] bg-gray-150 hidden lg:block" />
-
         {experiences.map((exp, index) => (
           <motion.div 
             key={index}
@@ -86,13 +83,16 @@ export const AboutExperience = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="flex flex-col lg:flex-row gap-8 lg:gap-16 w-full"
+            className="group relative flex flex-col lg:flex-row gap-8 lg:gap-16 w-full p-8 md:p-12 bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.04)] rounded-[2.5rem] hover:bg-white/50 hover:shadow-[0_16px_48px_rgba(63,43,115,0.05)] transition-all duration-500"
           >
+            {/* Liquid Glare Wrapper */}
+            <div className="absolute inset-0 overflow-hidden rounded-[2.5rem] pointer-events-none z-0">
+              <div className="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-white/60 to-transparent opacity-30 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out pointer-events-none" />
+            </div>
+            
             {/* Left Column: Role & Meta (Takes 4/12 columns or ~33%) */}
-            <div className="w-full lg:w-[33%] flex flex-col items-start lg:pr-8 relative">
-              {/* Timeline Connector Dot on Line */}
-              <div className="absolute right-[-37px] top-2.5 w-3.5 h-3.5 rounded-full border-2 border-[#3F2B73] bg-white hidden lg:block z-10" />
-
+            <div className="w-full lg:w-[33%] flex flex-col items-start lg:pr-8 relative z-10 lg:sticky lg:top-32 h-fit">
               <span className="text-xs font-mono font-bold tracking-wider text-[#3F2B73]/60 mb-2 uppercase block">
                 {exp.date}
               </span>
@@ -110,7 +110,7 @@ export const AboutExperience = () => {
             </div>
 
             {/* Right Column: Detailed Contributions (Takes 8/12 columns or ~67%) */}
-            <div className="w-full lg:w-[67%] flex flex-col">
+            <div className="w-full lg:w-[67%] flex flex-col relative z-10">
               {exp.description && (
                 <p className="text-gray-700 text-lg leading-relaxed font-light mb-6">
                   {exp.description}
@@ -134,9 +134,9 @@ export const AboutExperience = () => {
               )}
 
               {exp.tech.length > 0 && (
-                <div className="flex flex-wrap gap-2.5 pt-5 border-t border-gray-100 mt-auto">
+                <div className="flex flex-wrap gap-2.5 pt-5 border-t border-white/40 mt-auto">
                   {exp.tech.map((tech, i) => (
-                    <span key={i} className="px-3 py-1 rounded-xl bg-gray-50 border border-gray-150 text-xs font-semibold text-gray-600 hover:border-[#3F2B73]/20 hover:bg-white transition-all cursor-default">
+                    <span key={i} className="px-3.5 py-1.5 rounded-xl bg-white/50 border border-white/60 shadow-sm text-xs font-semibold text-gray-700 hover:bg-white/80 transition-all cursor-default">
                       {tech}
                     </span>
                   ))}

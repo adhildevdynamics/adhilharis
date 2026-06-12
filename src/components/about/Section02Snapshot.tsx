@@ -17,7 +17,7 @@ const cards = [
 
 export const Section02Snapshot = () => {
   return (
-    <section className="w-full max-w-[1200px] mx-auto px-6 md:px-12 py-8 md:py-16">
+    <section className="w-full max-w-[1200px] mx-auto px-6 md:px-12 py-6 md:py-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {cards.map((card, i) => (
           <motion.div 
@@ -26,13 +26,19 @@ export const Section02Snapshot = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="group flex flex-col p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300"
+            className="group relative flex flex-col p-8 rounded-[2rem] bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.04)] overflow-hidden hover:bg-white/50 hover:shadow-[0_16px_48px_rgba(63,43,115,0.05)] hover:-translate-y-1 transition-all duration-500"
           >
-            <div className="flex items-center gap-3 text-gray-400 mb-6">
-              {card.icon}
+            {/* Liquid Glare */}
+            <div className="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-white/60 to-transparent opacity-30 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out pointer-events-none" />
+
+            <div className="relative z-10 flex items-center gap-3 text-gray-500 mb-6">
+              <span className="w-10 h-10 rounded-xl bg-white/60 flex items-center justify-center text-[#3F2B73]/60 shadow-sm border border-white/80">
+                {card.icon}
+              </span>
               <span className="text-sm font-semibold uppercase tracking-wider">{card.label}</span>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mt-auto">{card.value}</h3>
+            <h3 className="relative z-10 text-2xl font-bold text-gray-900 mt-auto">{card.value}</h3>
           </motion.div>
         ))}
       </div>

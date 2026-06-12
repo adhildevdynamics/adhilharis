@@ -2,7 +2,16 @@ import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { MagneticButton } from './MagneticButton';
 
-const techLabels = ['React', 'React Native', 'TypeScript', 'Redux', 'Expo', 'Node.js', 'Next.js', 'Git'];
+const techLabels = [
+  { text: 'React', left: '10%', top: '15%' },
+  { text: 'React Native', left: '75%', top: '20%' },
+  { text: 'TypeScript', left: '5%', top: '45%' },
+  { text: 'Redux', left: '85%', top: '50%' },
+  { text: 'Expo', left: '15%', top: '75%' },
+  { text: 'Node.js', left: '80%', top: '80%' },
+  { text: 'Next.js', left: '25%', top: '90%' },
+  { text: 'Git', left: '65%', top: '95%' },
+];
 const badges = ['React.js', 'React Native', 'Expo', 'TypeScript', 'Frontend Development', 'Mobile Apps', 'UI Engineering'];
 
 export const HeroSection = () => {
@@ -128,7 +137,7 @@ export const HeroSection = () => {
           {/* Background Floating Tech Labels */}
           {techLabels.map((tech, i) => (
             <motion.div
-              key={tech}
+              key={tech.text}
               animate={{
                 y: [0, -20, 0],
                 x: [0, i % 2 === 0 ? 10 : -10, 0],
@@ -137,12 +146,12 @@ export const HeroSection = () => {
               transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut" }}
               className="absolute text-3xl md:text-5xl font-bold text-gray-200 pointer-events-none whitespace-nowrap z-0 hidden sm:block"
               style={{
-                top: `${20 + (i * 15)}%`,
-                left: `${10 + (i * 10)}%`,
+                top: tech.top,
+                left: tech.left,
                 transform: `translate(${mouseXOffset * 0.2}px, ${mouseYOffset * 0.2}px) rotate(${i % 2 === 0 ? -15 : 15}deg)`
               }}
             >
-              {tech}
+              {tech.text}
             </motion.div>
           ))}
 

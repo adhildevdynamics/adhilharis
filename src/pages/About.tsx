@@ -3,10 +3,8 @@ import { Section02Snapshot } from '../components/about/Section02Snapshot';
 import { Section03WhatIDo } from '../components/about/Section03WhatIDo';
 import { AboutProjects } from '../components/about/AboutProjects';
 import { AboutExperience } from '../components/about/AboutExperience';
-import { Section05Approach } from '../components/about/Section05Approach';
 import { Section06TechStack } from '../components/about/Section06TechStack';
 import { Section07Focus } from '../components/about/Section07Focus';
-import { SkillsUniverse } from '../components/ui/SkillsUniverse';
 import { Section08Closing } from '../components/about/Section08Closing';
 
 export const About = () => {
@@ -17,10 +15,8 @@ export const About = () => {
       <Section03WhatIDo />
       <AboutProjects />
       <AboutExperience />
-      <Section05Approach />
       <Section06TechStack />
       <Section07Focus />
-      <SkillsUniverse />
       <Section08Closing />
     </main>
   );

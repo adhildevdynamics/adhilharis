@@ -14,43 +14,29 @@ export const AiWorkflow = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
   const xTranslation = useTransform(scrollYProgress, [0.25, 0.85], ["0vw", "-336vw"]);
+  const rigRotateY = useTransform(scrollYProgress, [0, 1], [-6, 6]);
 
-  // Top content animations
   const titleOpacity = useTransform(scrollYProgress, [0, 0.15], [0.1, 1]);
   const titleY = useTransform(scrollYProgress, [0, 0.15], [50, 0]);
   const descOpacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
   const descY = useTransform(scrollYProgress, [0.1, 0.25], [30, 0]);
 
-  // Line drawing
-
   return (
-    <section ref={containerRef} className="h-[250vh] relative bg-light z-20">
-
-      {/* Sticky Container */}
+    <section ref={containerRef} className="h-[250vh] relative bg-light z-20 scene">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
 
-        {/* Massive Background Typography */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
           <span
-            className="text-[18vw] font-bold tracking-tighter whitespace-nowrap select-none"
-            style={{
-              WebkitTextStroke: '2px rgba(0,0,0,0.05)',
-              color: 'transparent'
-            }}
+            className="text-[18vw] font-display font-bold tracking-tighter whitespace-nowrap select-none"
+            style={{ WebkitTextStroke: '2px rgba(245,242,236,0.1)', color: 'transparent' }}
           >
             AI WORKFLOW
           </span>
@@ -58,43 +44,33 @@ export const AiWorkflow = () => {
 
         <div className="max-w-[1600px] w-full mx-auto px-0 md:px-12 lg:px-24 relative z-10 flex flex-col items-center overflow-hidden lg:overflow-visible">
 
-          {/* Header Content */}
           <div className="w-full max-w-4xl text-center mb-16 md:mb-32 px-6 md:px-0">
             <motion.h2
               style={{ opacity: titleOpacity, y: titleY }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-black leading-[1.1] mb-6"
+              className="text-4xl md:text-6xl lg:text-7xl font-display font-bold tracking-tighter text-ink leading-[1.1] mb-6"
             >
-              Building faster with modern <span className="text-[#3F2B73]/80">AI workflows.</span>
+              Building faster with modern <span className="bg-accent text-pop px-2 rounded-sm">AI workflows.</span>
             </motion.h2>
 
             <motion.p
               style={{ opacity: descOpacity, y: descY }}
-              className="text-lg md:text-2xl text-gray-500 font-light leading-relaxed mx-auto max-w-3xl"
+              className="text-lg md:text-2xl text-secondary font-light leading-relaxed mx-auto max-w-3xl"
             >
               I use AI-assisted development workflows to speed up debugging, improve productivity, review code, and ship better frontend experiences.
             </motion.p>
           </div>
 
-          {/* Workflow Strip */}
-          <div className="w-full relative px-0 md:px-0">
-
-            {/* Horizontal Connecting Line (Desktop) */}
+          <div className="w-full relative">
             <div className="hidden lg:block absolute top-[40px] left-[5%] right-[5%] h-[1px] z-0">
-              <div className="w-full h-full bg-black/5 absolute" />
-            </div>
-
-            {/* Vertical Connecting Line (Mobile - hidden because we scroll horizontally) */}
-            <div className="hidden absolute top-[5%] bottom-[5%] left-[30px] w-[1px] z-0">
-              <div className="w-full h-full bg-black/5 absolute" />
+              <div className="w-full h-full bg-metal/30 absolute" />
             </div>
 
             <motion.div
-              style={{ x: isMobile ? xTranslation : 0 }}
-              className="flex flex-row lg:flex-row flex-nowrap lg:flex-wrap justify-start lg:justify-between gap-4 lg:gap-4 relative z-10 w-full px-4 lg:px-0"
+              style={{ x: isMobile ? xTranslation : 0, rotateY: isMobile ? 0 : rigRotateY, transformStyle: 'preserve-3d' }}
+              className="flex flex-row lg:flex-row flex-nowrap lg:flex-wrap justify-start lg:justify-between gap-4 lg:gap-4 relative z-10 w-full px-4 lg:px-0 scene-flat"
             >
-              {/* Horizontal Connecting Line (Mobile) */}
               {isMobile && (
-                <div className="absolute top-[48px] left-[40vw] right-[40vw] h-[1px] bg-black/5 z-0 pointer-events-none" />
+                <div className="absolute top-[48px] left-[40vw] right-[40vw] h-[1px] bg-metal/30 z-0 pointer-events-none" />
               )}
 
               {steps.map((step, index) => {
@@ -106,27 +82,24 @@ export const AiWorkflow = () => {
                 // eslint-disable-next-line react-hooks/rules-of-hooks
                 const animatedY = useTransform(scrollYProgress, [start, end], [60, 0]);
                 // eslint-disable-next-line react-hooks/rules-of-hooks
-                const animatedScale = useTransform(scrollYProgress, [0.8, 0.9], [1, 1.05]);
+                const animatedRotate = useTransform(scrollYProgress, [start, end], [30, 0]);
 
-                // Resolve conditional hook checks by selecting values conditionally after hooks run
                 const cardOpacity = isMobile ? 1 : animatedOpacity;
                 const cardY = isMobile ? 0 : animatedY;
-
-                const isFinal = index === steps.length - 1;
-                const cardScale = isMobile ? 1 : (isFinal ? animatedScale : 1);
+                const cardRotate = isMobile ? 0 : animatedRotate;
 
                 return (
                   <motion.div
                     key={step.num}
-                    style={{ opacity: cardOpacity, y: cardY, scale: cardScale }}
-                    className="w-[80vw] sm:w-[50vw] lg:w-auto flex-none lg:flex-1 flex flex-col p-6 md:p-8 rounded-[2rem] relative bg-white shadow-[8px_8px_16px_rgba(0,0,0,0.04),-8px_-8px_16px_rgba(255,255,255,1)] border border-black/5"
+                    style={{ opacity: cardOpacity, y: cardY, rotateX: cardRotate, transformStyle: 'preserve-3d' }}
+                    className="w-[80vw] sm:w-[50vw] lg:w-auto flex-none lg:flex-1 flex flex-col p-6 md:p-8 rounded-sm relative bg-cream border border-dark/10 shadow-[0_20px_40px_-24px_rgba(17,17,17,0.25)]"
                   >
                     <div className="relative z-10 h-full flex flex-col items-center justify-center text-center">
-                      <div className="w-12 h-12 mb-4 rounded-full bg-white shadow-[inset_4px_4px_8px_rgba(0,0,0,0.04),inset_-4px_-4px_8px_rgba(255,255,255,1)] flex items-center justify-center border border-black/5 relative z-10">
-                        <span className="text-sm font-bold text-gray-400">{step.num}</span>
+                      <div className="w-12 h-12 mb-4 rounded-full bg-pop flex items-center justify-center relative z-10">
+                        <span className="text-sm font-bold text-accent font-mono">{step.num}</span>
                       </div>
-                      <h3 className="text-xl md:text-2xl font-bold text-gray-700 mb-4">{step.title}</h3>
-                      <p className="text-sm md:text-base text-gray-500 font-medium leading-relaxed">
+                      <h3 className="text-xl md:text-2xl font-display font-bold text-dark mb-4">{step.title}</h3>
+                      <p className="text-sm md:text-base text-dark/70 font-medium leading-relaxed">
                         {step.desc}
                       </p>
                     </div>
@@ -134,26 +107,23 @@ export const AiWorkflow = () => {
                 );
               })}
             </motion.div>
-
           </div>
-
         </div>
 
-        {/* Bottom Marquee */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden border-t border-black/5 py-4 bg-white/30 backdrop-blur-md">
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden border-t border-dark/10 py-4 bg-cream/90 backdrop-blur-md">
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
-            className="flex whitespace-nowrap text-sm text-gray-400 font-mono uppercase tracking-widest"
+            className="flex whitespace-nowrap text-sm text-dark/70 font-mono uppercase tracking-widest"
           >
             {[...Array(2)].map((_, i) => (
               <span key={i} className="px-8 flex items-center gap-8">
-                <span>GitHub Copilot</span> <span className="w-1 h-1 rounded-full bg-black/20" />
-                <span>VS Code Agents</span> <span className="w-1 h-1 rounded-full bg-black/20" />
-                <span>Prompt Engineering</span> <span className="w-1 h-1 rounded-full bg-black/20" />
-                <span>Debugging</span> <span className="w-1 h-1 rounded-full bg-black/20" />
-                <span>Code Review</span> <span className="w-1 h-1 rounded-full bg-black/20" />
-                <span>Frontend Productivity</span> <span className="w-1 h-1 rounded-full bg-black/20" />
+                <span>GitHub Copilot</span> <span className="w-1 h-1 rounded-full bg-pop" />
+                <span>VS Code Agents</span> <span className="w-1 h-1 rounded-full bg-pop" />
+                <span>Prompt Engineering</span> <span className="w-1 h-1 rounded-full bg-pop" />
+                <span>Debugging</span> <span className="w-1 h-1 rounded-full bg-pop" />
+                <span>Code Review</span> <span className="w-1 h-1 rounded-full bg-pop" />
+                <span>Frontend Productivity</span> <span className="w-1 h-1 rounded-full bg-pop" />
               </span>
             ))}
           </motion.div>

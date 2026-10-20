@@ -26,7 +26,7 @@ export const MagneticButton = ({ children, className = '', onClick }: MagneticBu
   return (
     <motion.button
       ref={ref}
-      className={`relative inline-flex items-center justify-center overflow-hidden rounded-full border border-black bg-transparent text-black px-8 py-4 transition-colors hover:bg-black hover:text-white ${className}`}
+      className={`relative inline-flex items-center justify-center overflow-hidden rounded-full border border-ink bg-transparent text-ink px-8 py-4 transition-colors hover:bg-accent hover:border-accent hover:text-pop ${className}`}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
       animate={{ x: position.x, y: position.y }}

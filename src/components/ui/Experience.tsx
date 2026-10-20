@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
 
 const experiences = [
   {
@@ -58,115 +57,64 @@ const experiences = [
 ];
 
 export const Experience = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
-    <section className="relative bg-light z-20 pt-16 md:pt-24 pb-16 md:pb-24 w-full">
-      <div className="z-0 max-w-[1400px] mx-auto px-6 lg:px-12 mb-8 md:mb-16 flex flex-col items-center text-center pt-8">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tighter mb-4 md:mb-6"
-        >
-          Experience
-        </motion.h2>
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-lg sm:text-xl md:text-2xl text-gray-500 font-light max-w-2xl"
-        >
-          A timeline of my professional journey, building scalable software and impactful digital experiences.
-        </motion.p>
+    <section id="experience" className="relative bg-light z-20 py-24 md:py-36 w-full scene">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 mb-16 md:mb-24 flex flex-col md:flex-row justify-between md:items-end border-b border-metal/40 pb-8">
+        <h2 className="display-lg font-display font-bold tracking-tighter text-ink">Experience</h2>
+        <span className="text-xs md:text-sm font-mono uppercase tracking-[0.3em] text-accent mt-4 md:mt-0">04 / Timeline</span>
       </div>
-      
-      <div className="flex flex-col w-full relative pb-16">
+
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col">
         {experiences.map((exp, index) => (
-          <div 
-            key={index} 
-            className="w-full max-w-[1200px] mx-auto px-6 mb-8 md:mb-24 transition-all duration-500 relative md:sticky"
-            style={isMobile ? {} : { 
-              top: `calc(25vh + ${index * 24}px)`,
-              zIndex: index + 10
-            }}
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, rotateX: -45, y: 30 }}
+            whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformStyle: 'preserve-3d', transformOrigin: 'top' }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-10 py-10 md:py-14 border-b border-metal/30 relative"
           >
-            <motion.div 
-              initial={{ opacity: 0, y: 100 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full bg-white/90 backdrop-blur-2xl border border-black/5 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.15)] rounded-[2rem] md:rounded-[3rem] p-6 md:p-16 flex flex-col lg:flex-row gap-6 lg:gap-12 relative overflow-hidden"
-            >
-              {/* Subtle top edge gradient for 3D stacking effect */}
-              <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/[0.03] to-transparent pointer-events-none" />
-              
-              {/* Left Column: Role & Meta Info */}
-              <div className="w-full lg:w-1/3 flex flex-col relative z-10 shrink-0">
-                <div className="lg:sticky lg:top-32 flex flex-col">
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black tracking-tight mb-2 md:mb-4 leading-tight">
-                    {exp.role}
-                  </h3>
-                  <div className="text-lg md:text-xl text-gray-600 mb-4 md:mb-6 font-medium">{exp.company}</div>
-                  
-                  <div className="flex flex-col gap-2 md:gap-3">
-                    <div className="flex items-center gap-3">
-                      <span className="px-3 py-1 rounded-full border border-black/10 bg-black/5 text-xs font-mono font-semibold tracking-wider uppercase text-black/60">
-                        {exp.type}
-                      </span>
-                    </div>
-                    <div className="text-sm font-mono text-gray-400 mt-1 md:mt-2">{exp.date}</div>
-                    <div className="text-sm font-mono text-gray-400">{exp.location}</div>
-                  </div>
-                </div>
+            <span className="absolute -top-1 -left-1 md:left-0 w-2 h-2 rounded-full bg-accent hidden lg:block" />
+
+            <div className="lg:col-span-3">
+              <div className="lg:sticky lg:top-32 flex flex-col gap-2">
+                <span className="font-mono text-sm text-secondary/70">{exp.date}</span>
+                <h3 className="text-2xl md:text-3xl font-display font-bold text-ink tracking-tight">{exp.company}</h3>
+                <span className="text-base text-secondary font-medium">{exp.role}</span>
+                <span className="text-xs font-mono uppercase tracking-widest text-secondary/60 mt-1">{exp.type} · {exp.location}</span>
               </div>
-              
-              {/* Right Column: Details */}
-              <div className="w-full lg:w-2/3 flex flex-col relative z-10 lg:max-h-[60vh] lg:overflow-y-auto pr-2 md:pr-6 pb-4 md:pb-8 no-scrollbar">
-                {exp.description && (
-                  <p className="text-gray-700 text-lg md:text-xl leading-relaxed font-light mb-8">
-                    {exp.description}
-                  </p>
-                )}
-                
-                {exp.contributions.length > 0 && (
-                  <div className="flex flex-col mb-10">
-                    <span className="text-xs font-bold tracking-[0.2em] uppercase text-black/30 border-b border-black/5 pb-4 mb-6">
-                      Key Contributions
+            </div>
+
+            <div className="lg:col-span-9 flex flex-col gap-8">
+              {exp.description && (
+                <p className="text-lg md:text-xl text-secondary font-light leading-relaxed max-w-2xl">
+                  {exp.description}
+                </p>
+              )}
+
+              {exp.contributions.length > 0 && (
+                <ul className="flex flex-col gap-4">
+                  {exp.contributions.map((item, i) => (
+                    <li key={i} className="flex gap-4 text-secondary text-base md:text-lg leading-relaxed font-light items-start">
+                      <span className="text-accent mt-1.5 text-xs">—</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {exp.tech.length > 0 && (
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-metal/30">
+                  {exp.tech.map((tech, i) => (
+                    <span key={i} className="px-3 py-1.5 text-sm text-secondary font-mono">
+                      {tech}{i < exp.tech.length - 1 ? ' /' : ''}
                     </span>
-                    <ul className="flex flex-col gap-4">
-                      {exp.contributions.map((item, i) => (
-                        <li key={i} className="flex gap-4 text-gray-700 text-base md:text-lg leading-relaxed font-light items-start">
-                          <span className="text-[#3F2B73]/60 mt-1.5 text-sm">✦</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                
-                {exp.tech.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-auto pt-8 border-t border-black/5">
-                    {exp.tech.map((tech, i) => (
-                      <span key={i} className="px-4 py-2 rounded-full bg-light border border-black/5 text-sm text-gray-600 font-medium hover:bg-white hover:shadow-sm transition-all cursor-default">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </motion.div>
         ))}
       </div>
     </section>

@@ -2,82 +2,70 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const principles = [
-  {
-    title: "Clarity",
-    description: "Interfaces should be simple, readable, and easy to use."
-  },
-  {
-    title: "Motion",
-    description: "Animations should guide the user, not distract them."
-  },
-  {
-    title: "Scalability",
-    description: "Code should be reusable, maintainable, and ready to grow."
-  }
+  { title: "Clarity", description: "Interfaces should be simple, readable, and easy to use." },
+  { title: "Motion", description: "Animations should guide the user, not distract them." },
+  { title: "Scalability", description: "Code should be reusable, maintainable, and ready to grow." }
 ];
 
 export const Philosophy = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
   return (
-    <section ref={containerRef} className="h-[200vh] relative bg-black text-white z-20">
-      
-      {/* Glowing Grid Background */}
-      <div 
-        className="fixed inset-0 pointer-events-none opacity-20"
+    <section
+      ref={containerRef}
+      className="h-[170vh] relative text-cream z-20 scene"
+      style={{ background: 'linear-gradient(160deg, #1A0303 0%, #3B0505 45%, #1A0303 100%)' }}
+    >
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.08]"
         style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '100px 100px'
+          backgroundImage: 'linear-gradient(to right, #FAF9F6 1px, transparent 1px), linear-gradient(to bottom, #FAF9F6 1px, transparent 1px)',
+          backgroundSize: '80px 80px'
         }}
       />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black to-black opacity-80 pointer-events-none" />
 
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-start pt-24 pb-12 md:justify-center md:pt-0 md:pb-0 px-6 lg:px-24 max-w-[1600px] mx-auto overflow-hidden">
-        
-        {/* Massive Headline */}
-        <motion.div 
-          style={{ opacity: useTransform(scrollYProgress, [0, 0.2, 0.9], [1, 1, 0]) }}
-          className="mb-8 md:mb-24 relative z-10"
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-center px-6 md:px-12 max-w-[1600px] mx-auto">
+
+        <motion.div
+          style={{ opacity: useTransform(scrollYProgress, [0, 0.15, 0.85], [1, 1, 0]) }}
+          className="mb-12 md:mb-20"
         >
-          <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-[6rem] font-bold tracking-tighter leading-[1.1] text-white">
+          <span className="text-xs md:text-sm font-mono uppercase tracking-[0.3em] text-cream/50 mb-6 block">07 / Approach</span>
+          <h2 className="display-lg font-display font-bold tracking-tighter leading-[1.05] text-cream">
             Frontend is not just what users see.
           </h2>
-          <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-[6rem] font-bold tracking-tighter leading-[1.1] text-outline mt-1 md:mt-2 opacity-50">
+          <h2 className="display-lg font-display font-bold tracking-tighter leading-[1.05] text-outline-light mt-1">
             It is what users feel.
           </h2>
         </motion.div>
 
-        {/* 3 Principles */}
-        <div className="flex flex-col gap-6 md:gap-16 w-full max-w-4xl relative z-10">
+        <div className="flex flex-col gap-4 md:gap-8 w-full max-w-4xl">
           {principles.map((principle, index) => {
             const start = 0.2 + (index * 0.2);
             const end = start + 0.15;
-            
+
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            const rotateY = useTransform(scrollYProgress, [start, end], [-70, 0]);
             // eslint-disable-next-line react-hooks/rules-of-hooks
             const opacity = useTransform(scrollYProgress, [start, end], [0.1, 1]);
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const x = useTransform(scrollYProgress, [start, end], [-50, 0]);
 
             return (
-              <motion.div 
+              <motion.div
                 key={principle.title}
-                style={{ opacity, x }}
-                className="flex flex-col md:flex-row gap-3 md:gap-12 items-start border-l-2 border-white/20 pl-4 md:pl-12"
+                style={{ rotateY, opacity, transformStyle: 'preserve-3d', transformOrigin: 'left' }}
+                className="flex flex-col md:flex-row gap-2 md:gap-10 items-start border-t border-cream/10 pt-6 md:pt-8"
               >
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center font-mono text-xs md:text-sm shrink-0 bg-white/5 backdrop-blur-sm">
-                  0{index + 1}
-                </div>
+                <span className="font-mono text-sm text-cream/70 w-10 shrink-0 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-accent rounded-full" />0{index + 1}
+                </span>
                 <div>
-                  <h3 className="text-xl sm:text-3xl md:text-5xl font-bold tracking-tighter mb-2 md:mb-4">{principle.title}</h3>
-                  <p className="text-gray-400 text-sm sm:text-lg md:text-2xl font-light leading-relaxed">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tighter mb-2 text-cream">{principle.title}</h3>
+                  <p className="text-cream/60 text-base sm:text-lg md:text-xl font-light leading-relaxed">
                     {principle.description}
                   </p>
                 </div>

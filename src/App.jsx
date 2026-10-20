@@ -179,7 +179,7 @@ export default function App() {
                   </div>
                   {p.enterprise && (
                     <div className="thumb">
-                      <Shot frame={p.frame} shots={p.shots} name={p.name} splash={p.splash} />
+                      <Shot frame={p.frame} shots={p.shots} name={p.name} />
                     </div>
                   )}
                   <h3>{p.name}</h3>

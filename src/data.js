@@ -96,8 +96,7 @@ export const projects = [
     enterprise: true,
     tint: '#f5f2ed',
     frame: 'phone',
-    splash: true,
-    shots: ['/work/goticket-splash.png'],
+    shots: ['/work/goticket-tickets.png', '/work/goticket-chat.png'],
   },
   {
     name: 'Flux OnGo',

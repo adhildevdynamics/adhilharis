@@ -1,5 +1,5 @@
 // Real screenshots presented in a browser or phone frame.
-export default function Shot({ frame, shots, name, splash = false }) {
+export default function Shot({ frame, shots, name }) {
   if (frame === 'web') {
     return (
       <div className="browser">
@@ -16,7 +16,7 @@ export default function Shot({ frame, shots, name, splash = false }) {
   return (
     <div className={`phones n${shots.length}`}>
       {shots.map((src, i) => (
-        <div key={src} className={`phone-f ${splash ? 'splash' : ''}`}>
+        <div key={src} className="phone-f">
           <img src={src} alt={`${name} screenshot ${i + 1}`} loading="lazy" />
         </div>
       ))}

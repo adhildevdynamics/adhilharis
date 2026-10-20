@@ -84,8 +84,8 @@ export const projects = [
     tags: ['Azure AD & MSAL', 'Conversational AI', 'Dashboards', 'Token refresh'],
     enterprise: true,
     tint: '#e0414f',
-    device: 'web',
-    shot: '/work/goticket-web.png',
+    frame: 'web',
+    shots: ['/work/goticket-web.png'],
   },
   {
     name: 'GoTicket Mobile',
@@ -95,8 +95,9 @@ export const projects = [
     tags: ['OTP & QR auth', 'SignalR chat', 'Firebase FCM', 'RTL'],
     enterprise: true,
     tint: '#f5f2ed',
-    device: 'phone',
-    shot: '/work/goticket-mobile.png',
+    frame: 'phone',
+    splash: true,
+    shots: ['/work/goticket-splash.png'],
   },
   {
     name: 'Flux OnGo',
@@ -106,8 +107,8 @@ export const projects = [
     tags: ['Inspections', 'Offline features', 'QR operations'],
     enterprise: true,
     tint: '#8b0d1a',
-    device: 'phone',
-    shot: '/work/flux-inspection.jpg',
+    frame: 'phone',
+    shots: ['/work/flux-login.jpg', '/work/flux-inspection.jpg'],
   },
   {
     name: 'ByteBridge',

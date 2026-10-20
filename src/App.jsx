@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Reveal from './components/Reveal.jsx'
 import Icon from './components/Icon.jsx'
-import Mock from './components/Mock.jsx'
+import Shot from './components/Shot.jsx'
 import Header from './components/Header.jsx'
 import Doodle from './components/Doodle.jsx'
 import HireModal from './components/HireModal.jsx'
@@ -179,11 +179,7 @@ export default function App() {
                   </div>
                   {p.enterprise && (
                     <div className="thumb">
-                      {p.shot ? (
-                        <img src={p.shot} alt={`${p.name} screenshot`} loading="lazy" />
-                      ) : (
-                        <Mock device={p.device} tint={p.tint} name={p.name} />
-                      )}
+                      <Shot frame={p.frame} shots={p.shots} name={p.name} splash={p.splash} />
                     </div>
                   )}
                   <h3>{p.name}</h3>

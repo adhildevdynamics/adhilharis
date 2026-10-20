@@ -140,6 +140,7 @@ img { display: block; }
 .cv { display: grid; grid-template-columns: 40% 60%; }
 .col-l { border-right: var(--lw) solid var(--ink); }
 .col-l, .col-r { display: flex; flex-direction: column; }
+.col-l { container-type: inline-size; }
 .c-skills, .c-contact { flex: 1; }
 .cell { position: relative; padding: 32px 30px; }
 .cell + .cell { border-top: var(--lw) solid var(--ink); }
@@ -147,7 +148,7 @@ img { display: block; }
 .c-name { padding-top: 22px; }
 .name {
   position: relative; z-index: 4; display: flex; flex-direction: column; white-space: nowrap;
-  font-family: var(--hand); font-weight: 700; font-size: clamp(4.6rem, 11vw, 9.8rem); line-height: 0.74; letter-spacing: -0.01em;
+  font-family: var(--hand); font-weight: 700; font-size: clamp(4.6rem, 34cqi, 9.8rem); line-height: 0.74; letter-spacing: -0.01em;
   transform: rotate(-7deg); transform-origin: left bottom; margin: 18px 0 0 -4px;
 }
 .name span:nth-child(2) { padding-left: 0.62em; }
@@ -448,3 +449,12 @@ img { display: block; }
 
 /* real case-study screenshots */
 .thumb img { width: 100%; height: 100%; object-fit: contain; object-position: center; background: #141111; }
+
+/* robustness across devices */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+img, svg, video { max-width: 100%; }
+p, li, h1, h2, h3, h4 { overflow-wrap: break-word; }
+.hdr-bar, .page, .foot { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
+.foot { padding-bottom: max(34px, env(safe-area-inset-bottom)); }
+.menu { padding-bottom: max(40px, env(safe-area-inset-bottom)); min-height: 100dvh; }
+@media (hover: none) { .btn:hover, .hdr-cta:hover, .hdr-cv:hover { transform: none; } }
